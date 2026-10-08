@@ -110,7 +110,7 @@ A variety of terminal themes and UI themes, with customizable interface font siz
 
 #### Multi-Language
 
-9 interface languages: Simplified Chinese, Traditional Chinese, English, 日本語, 한국어, Deutsch, Español, Français, Русский.
+10 interface languages: Simplified Chinese, Traditional Chinese, English, 日本語, 한국어, Deutsch, Español, Français, Русский, Português (Brasil).
 
 
 ## Next Steps

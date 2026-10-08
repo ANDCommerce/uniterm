@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"runtime"
 	"strings"
 	"sync"
 	"time"
@@ -460,8 +461,13 @@ func (l *OutputLogger) Enable(dir, filenameTemplate, name, host, protocol string
 	if dir == "" {
 		dir = defaultSessionLogDir()
 	}
-	if err := os.MkdirAll(dir, 0o755); err != nil {
+	if err := os.MkdirAll(dir, 0o700); err != nil {
 		return "", fmt.Errorf("mkdir log dir %s: %w", dir, err)
+	}
+	if runtime.GOOS != "windows" && filepath.Clean(dir) == filepath.Clean(defaultSessionLogDir()) {
+		if err := os.Chmod(dir, 0o700); err != nil {
+			return "", fmt.Errorf("chmod log dir %s: %w", dir, err)
+		}
 	}
 	now := time.Now()
 	filename := formatLogFilename(filenameTemplate, name, host, now)
@@ -480,7 +486,7 @@ func (l *OutputLogger) Enable(dir, filenameTemplate, name, host, protocol string
 		} else {
 			candidate = filepath.Join(dir, fmt.Sprintf("%s_%d%s", base, suffix, ext))
 		}
-		f, err := os.OpenFile(candidate, os.O_CREATE|os.O_EXCL|os.O_WRONLY, 0o644)
+		f, err := os.OpenFile(candidate, os.O_CREATE|os.O_EXCL|os.O_WRONLY, 0o600)
 		if err == nil {
 			file = f
 			final = candidate

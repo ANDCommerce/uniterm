@@ -9,11 +9,15 @@ import (
 func TestMcpNotifyStrings(t *testing.T) {
 	en := mcpNotifyStringsFor("en")
 	zh := mcpNotifyStringsFor("zh-CN")
+	ptBR := mcpNotifyStringsFor("pt-BR")
 	if en.Title != "uniTerm · MCP approval request" {
 		t.Errorf("en title = %q", en.Title)
 	}
 	if !strings.Contains(zh.BodyConnect, "请求建立新连接") {
 		t.Errorf("zh connect template = %q", zh.BodyConnect)
+	}
+	if !strings.Contains(ptBR.BodyConnect, "nova conexão") {
+		t.Errorf("pt-BR connect template = %q", ptBR.BodyConnect)
 	}
 	if want := fmt.Sprintf(zh.BodyConnect, "cc"); mcpNotifyBody(zh, "cc", "") != want {
 		t.Errorf("zh connect body = %q, want %q", mcpNotifyBody(zh, "cc", ""), want)

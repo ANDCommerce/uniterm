@@ -1,6 +1,6 @@
 
 export const SUPPORTED_LOCALES = [
-  'zh-CN', 'zh-TW', 'en', 'ja', 'ko', 'de', 'es', 'fr', 'ru'
+  'zh-CN', 'zh-TW', 'en', 'ja', 'ko', 'de', 'es', 'fr', 'ru', 'pt-BR'
 ] as const
 
 export type Locale = typeof SUPPORTED_LOCALES[number]
@@ -486,6 +486,7 @@ export const LANGUAGE_OPTIONS: { value: Locale; label: string; native: string }[
   { value: 'es', label: 'Español', native: 'Español' },
   { value: 'fr', label: 'Français', native: 'Français' },
   { value: 'ru', label: 'Русский', native: 'Русский' },
+  { value: 'pt-BR', label: 'Português (Brasil)', native: 'Português (Brasil)' },
 ]
 
 export interface UpdateAsset {

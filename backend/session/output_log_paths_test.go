@@ -1,7 +1,9 @@
 package session
 
 import (
+	"os"
 	"path/filepath"
+	"runtime"
 	"testing"
 	"time"
 )
@@ -53,5 +55,35 @@ func TestOutputLoggerEnableUsesCollisionSuffix(t *testing.T) {
 
 	if filepath.Base(path1) != "fixed.log" || filepath.Base(path2) != "fixed_2.log" {
 		t.Fatalf("paths = %q, %q", path1, path2)
+	}
+}
+
+func TestOutputLoggerEnableCreatesPrivateLogDirectoryAndFile(t *testing.T) {
+	dir := filepath.Join(t.TempDir(), "logs")
+	logger := &OutputLogger{}
+	path, err := logger.Enable(dir, "private.log", "session", "host", "ssh")
+	if err != nil {
+		t.Fatal(err)
+	}
+	logger.Disable()
+
+	if runtime.GOOS == "windows" {
+		return
+	}
+
+	dirInfo, err := os.Stat(dir)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if got := dirInfo.Mode().Perm(); got != 0o700 {
+		t.Errorf("log directory permissions = %#o, want %#o", got, 0o700)
+	}
+
+	fileInfo, err := os.Stat(path)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if got := fileInfo.Mode().Perm(); got != 0o600 {
+		t.Errorf("log file permissions = %#o, want %#o", got, 0o600)
 	}
 }

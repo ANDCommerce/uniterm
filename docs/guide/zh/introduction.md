@@ -110,7 +110,7 @@ GitHub / Gitee 双源自动切换，应用内下载、校验并一键安装。
 
 #### 多语言
 
-9 种界面语言：简体中文、繁体中文、English、日本語、한국어、Deutsch、Español、Français、Русский。
+10 种界面语言：简体中文、繁体中文、English、日本語、한국어、Deutsch、Español、Français、Русский、Português (Brasil)。
 
 
 ## 下一步

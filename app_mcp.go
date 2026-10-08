@@ -642,6 +642,7 @@ var mcpNotifyLabels = map[string]mcpNotifyStrings{
 	"es":    {"uniTerm · Solicitud de aprobación MCP", "%s solicita ejecutar un comando; confírmalo en uniTerm", "%s solicita una nueva conexión; confírmalo en uniTerm"},
 	"fr":    {"uniTerm · Demande d'approbation MCP", "%s demande à exécuter une commande — à confirmer dans uniTerm", "%s demande une nouvelle connexion — à confirmer dans uniTerm"},
 	"ru":    {"uniTerm · запрос на одобрение MCP", "%s запрашивает выполнение команды — подтвердите в uniTerm", "%s запрашивает новое подключение — подтвердите в uniTerm"},
+	"pt-BR": {"uniTerm · Solicitação de aprovação MCP", "%s solicitou executar um comando — confirme no uniTerm", "%s solicitou uma nova conexão — confirme no uniTerm"},
 }
 
 // mcpNotifyStringsFor returns the string set for lang, English fallback.
